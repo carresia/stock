@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cienet.zheng.stock.mapper.StockInfoMapper">
+    <resultMap id="siList" type="com.cienet.zheng.stock.dao.StockInfo">
+        <id property="transactionID" column="transaction_id"/>
+        <result property="tradeID" column="trade_id"/>
+        <result property="version" column="version"/>
+        <result property="securityCode" column="security_code"/>
+        <result property="quantity" column="quantity"/>
+        <result property="dBOperator" column="db_operator"/>
+        <result property="userOperator" column="user_operator"/>
+    </resultMap>
+    <!-- 开启基于redis的二级缓存 -->
+    <!--    <cache type="cn.rivamed.springbootmybatiswithredis.util.RedisCache"/>-->
+
+    <insert id="save" parameterType="com.cienet.zheng.stock.dao.StockInfo" keyProperty="transactionID"
+            useGeneratedKeys="true">
+        insert into stock_info (trade_id,version,security_code,quantity,db_operator,user_operator)
+        values (#{tradeID},#{version},#{securityCode},#{quantity},#{dBOperator},#{userOperator})
+    </insert>
+    <select id="findBySecurityCode" resultMap="siList" parameterType="java.lang.String">
+       SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info WHERE security_code=#{security_code}
+    </select>
+
+
+    <select id="findByTradeId" resultMap="siList" parameterType="java.lang.Integer">
+        SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info WHERE trade_id=#{tradle_id}
+    </select>
+    <select id="findLastUpdateByTradeId" resultMap="siList"
+            parameterType="com.cienet.zheng.stock.common.StockSelectorExample">
+        SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info WHERE
+        trade_id=#{tradeId}
+        <if test="orderByClause != null">
+            ORDER BY ${orderByClause} DESC
+        </if>
+        LIMIT 1
+    </select>
+    <select id="findByDBOperate" resultMap="siList" parameterType="java.lang.String">
+        SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info WHERE db_operator=#{dBOperator}
+    </select>
+
+    <select id="queryMaxTradeId" resultType="java.lang.Integer">
+        SELECT Max(trade_id) as id FROM stock_info
+    </select>
+
+    <select id="findAll" resultMap="siList">
+         SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info
+    </select>
+
+
+    <select id="findAllSecurityCode" resultType="java.lang.String">
+         SELECT DISTINCT security_code FROM stock_info
+    </select>
+
+
+</mapper>
