@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,9 +74,8 @@ public class StockController extends BaseController {
 
     @ApiOperation("find stocks information by tradeId.")
     @ApiImplicitParam(name = "trade_id", value = "tradeId.", required = true, type = "Integer")
-    @GetMapping("find")
+    @GetMapping(value = "find", produces= MediaType.APPLICATION_JSON_VALUE)
     public String findStockByTradeId(@RequestParam(name = "trade_id") Integer tradeId) {
-        log.debug("zhengshanhaha: {}", tradeId);
         List<StockInfo> res = stockService.findStockByTradeId(tradeId);
         return success(res);
     }

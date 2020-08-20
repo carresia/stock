@@ -1,0 +1,6 @@
+.idea/
+Stock.iml
+stock.log
+stock.log.*.gz
+target/
+
