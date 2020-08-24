@@ -37,8 +37,8 @@
         </if>
         LIMIT 1
     </select>
-    <select id="findByDBOperate" resultMap="siList" parameterType="java.lang.String">
-        SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info WHERE db_operator=#{dBOperator}
+    <select id="findByDBOperate" resultMap="siList" parameterType="com.cienet.zheng.stock.dao.DBOperate">
+        SELECT transaction_id,trade_id,version,security_code,quantity,db_operator,user_operator FROM stock_info WHERE db_operator=#{db_operator}
     </select>
 
     <select id="queryMaxTradeId" resultType="java.lang.Integer">

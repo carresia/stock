@@ -13,7 +13,7 @@ public interface StockInfoMapper {
     List<StockInfo> findBySecurityCode(@Param("security_code") String securityCode);
     List<StockInfo> findByTradeId(@Param("tradle_id") Integer tradeID);
     StockInfo findLastUpdateByTradeId(StockSelectorExample example);
-    List<StockInfo> findByDBOperate(@Param("db_operator") DBOperate dbOperator);
+    List<StockInfo> findByDBOperate(@Param("db_operator") DBOperate dBOperator);
     Integer queryMaxTradeId();
     List<StockInfo> findAll();
     List<String> findAllSecurityCode();
