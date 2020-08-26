@@ -24,9 +24,8 @@ public class StockServiceImpl implements StockService {
     StockInfoMapper stockInfoRepositroy;
 
     @Override
-    @Transactional(propagation= Propagation.REQUIRED)
-    public void addTrade(String securityCode, Integer quality, UserOperate userOperate)
-             {
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+    public void addTrade(String securityCode, Integer quality, UserOperate userOperate) {
         if (UserOperate.BUY == userOperate) {
             log.debug("start a trade BUY.");
             insertTrade(securityCode, quality, userOperate);
@@ -39,7 +38,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
     public void updateStock(Integer tradeId, String securityCode, Integer quality, UserOperate userOperate)
             throws ServiceException {
         StockInfo lastUpdateStockInfo = findLastUpdateByTradeId(tradeId);
@@ -72,7 +71,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
     public void cancelByTradeId(Integer tradeId) {
         StockInfo lastUpdateStockInfo = findLastUpdateByTradeId(tradeId);
         stockIsInTrading(lastUpdateStockInfo);
