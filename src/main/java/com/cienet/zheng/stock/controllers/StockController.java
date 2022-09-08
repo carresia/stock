@@ -11,7 +11,9 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -72,9 +74,16 @@ public class StockController extends BaseController {
         return success(list);
     }
 
+    @GetMapping("test")
+    public String testTimeout() throws InterruptedException {
+        log.info("test timeout...");
+        Thread.sleep(12000);
+        return success("sleep 1s");
+    }
+
     @ApiOperation("find stocks information by tradeId.")
     @ApiImplicitParam(name = "trade_id", value = "tradeId.", required = true, type = "Integer")
-    @GetMapping(value = "find", produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "find", produces = MediaType.APPLICATION_JSON_VALUE)
     public String findStockByTradeId(@RequestParam(name = "trade_id") Integer tradeId) {
         List<StockInfo> res = stockService.findStockByTradeId(tradeId);
         return success(res);

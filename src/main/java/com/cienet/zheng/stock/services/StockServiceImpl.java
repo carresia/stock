@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -35,6 +38,21 @@ public class StockServiceImpl implements StockService {
         Integer curQuality = getStockQualityBySecurity(securityCode);
         qualityIsAvailable(curQuality, quality);
         insertTrade(securityCode, quality, userOperate);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+    public void cancelByTradeId(Integer tradeId) {
+        StockInfo lastUpdateStockInfo = findLastUpdateByTradeId(tradeId);
+        stockIsInTrading(lastUpdateStockInfo);
+        StockInfo cancelInfo = StockInfo.builder()
+                .tradeID(lastUpdateStockInfo.getTradeID())
+                .version(lastUpdateStockInfo.getVersion() + 1)
+                .securityCode(lastUpdateStockInfo.getSecurityCode())
+                .quantity(0)
+                .dBOperator(DBOperate.CANCEL)
+                .userOperator(UserOperate.SELL).build();
+        stockInfoRepositroy.save(cancelInfo);
     }
 
     @Override
@@ -68,21 +86,6 @@ public class StockServiceImpl implements StockService {
         List<StockInfo> res = stockInfoRepositroy.findByTradeId(tradeId);
         return Optional.ofNullable(res)
                 .orElseThrow(() -> new ServiceException(ErrCode.NO_DATA, ErrCode.getMessage(ErrCode.NO_DATA)));
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
-    public void cancelByTradeId(Integer tradeId) {
-        StockInfo lastUpdateStockInfo = findLastUpdateByTradeId(tradeId);
-        stockIsInTrading(lastUpdateStockInfo);
-        StockInfo cancelInfo = StockInfo.builder()
-                .tradeID(lastUpdateStockInfo.getTradeID())
-                .version(lastUpdateStockInfo.getVersion() + 1)
-                .securityCode(lastUpdateStockInfo.getSecurityCode())
-                .quantity(0)
-                .dBOperator(DBOperate.CANCEL)
-                .userOperator(UserOperate.SELL).build();
-        stockInfoRepositroy.save(cancelInfo);
     }
 
     @Override
