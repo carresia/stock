@@ -77,7 +77,14 @@ public class StockController extends BaseController {
     @GetMapping("test")
     public String testTimeout() throws InterruptedException {
         log.info("test timeout...");
-        Thread.sleep(12000);
+        Thread.sleep(1000);
+        return success("sleep 1s");
+    }
+
+    @GetMapping("test/second")
+    public String testTimeout1() throws InterruptedException {
+        log.info("test timeout...");
+        Thread.sleep(1000);
         return success("sleep 1s");
     }
 
