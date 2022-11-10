@@ -1,5 +1,10 @@
 package com.cienet.zheng.stock.controllers;
 
+import java.io.*;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +81,39 @@ class StockControllerTest {
         stockInfos.add(cancelStockInfo);
 
         assertEquals(service.getAllStockInfo(), stockInfos);
+    }
+
+    /**
+     * https://www.javadoop.com/post/java-nio
+     * 测试FileChannel
+     */
+    @Test
+    public void testBuffer() throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(new File("data.txt"));
+        FileChannel fileChannel = outputStream.getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        buffer.put("随机写入一些内容到 Buffer 中".getBytes());
+        // Buffer 切换为读模式
+        buffer.flip();
+        while(buffer.hasRemaining()) {
+            // 将 Buffer 中的内容写入文件
+            fileChannel.write(buffer);
+        }
+    }
+
+    /**
+     * 测试
+     * 1. SocketChannel
+     * 2. ServerSocketChannel
+     * 之前说 SocketChannel 是 TCP 客户端，这里说的 ServerSocketChannel 就是对应的服务端。
+     * @throws IOException
+     */
+    @Test
+    public void testSocketChannel() throws IOException {
+        // 打开一个通道
+        SocketChannel socketChannel = SocketChannel.open();
+        // 发起连接
+        socketChannel.connect(new InetSocketAddress("https://www.javadoop.com", 80));
     }
 
     @Test
