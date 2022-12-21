@@ -7,6 +7,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -168,5 +169,18 @@ class StockControllerTest {
         this.mockMvc.perform(get("/hello"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("hello word")));
+    }
+
+    /**
+     * 试试它，哈哈
+     * @throws Exception
+     */
+    @Test
+    void testCompletableFuture() throws Exception {
+        CompletableFuture<String> cf = new CompletableFuture<String>();
+        cf.complete("hello word");
+        String result = cf.get();
+        System.out.println(result);
+
     }
 }

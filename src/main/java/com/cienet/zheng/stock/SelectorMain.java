@@ -1,5 +1,8 @@
 package com.cienet.zheng.stock;
 
+import com.cienet.zheng.stock.common.Utils;
+import com.google.common.util.concurrent.UncheckedTimeoutException;
+
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -15,6 +18,10 @@ import java.util.Set;
  * @create: 2021-12-22 14:02
  **/
 public class SelectorMain {
+    public static void main(String[] args) throws Exception {
+        Utils.buildMiHomeMiddlePageSearch();
+    }
+
     ServerSocketChannel serverSocketChannel = null;
     Selector selector = null;
 
