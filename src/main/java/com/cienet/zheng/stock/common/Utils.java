@@ -18,10 +18,6 @@ import java.util.Random;
 @Slf4j
 public class Utils {
 
-//    @RequestParam(required = false) String userId,
-//    @RequestParam(required = false, defaultValue = "") String after,
-//    @RequestParam(required = false, defaultValue = "20") @Range(min = 1, max = 100) int limit,
-//    @Valid SearchAnnounceCondition condition
     public static void buildMiHomeMiddleUserSearch() throws Exception {
         // 1.读取测试userId
         List<String> userIds = getUserIds();
@@ -36,27 +32,71 @@ public class Utils {
         writeFile("/Users/zhengshan/Downloads/user_announce.txt", stringBuilder.toString());
     }
 
-
-//    @RequestParam(required = false, defaultValue = "1") @Range(min = 1, max = 1000) int page,
-//    @RequestParam(required = false, defaultValue = "20") @Range(min = 1, max = 100) int limit, @Valid SearchAnnounceCondition condition
     public static void buildMiHomeMiddlePageSearch() throws Exception {
         List<String> userIds = getUserIds();
+        List<String> operaTags = getOperateTags();
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("signature").append(",")
                 .append("limit").append(",")
                 .append("userId").append(",")
-                .append("page").append("\n");
+                .append("page").append(",")
+                .append("operaTags").append(",")
+                .append("excludeOperaTags").append(",")
+                .append("isGood").append(",")
+                .append("isTop").append(",")
+        .append("auditStatus").append(",")
+        .append("announceType").append(",")
+        .append("isRmd").append("\n");
 
         String appKey = "e60221f56f7c4a4a848a05408fcbc5aa";
+        int tagsSize = operaTags.size();
+
+        int[] auditStatus = new int[]{0, 2, -1, -2, -7};
+        int[] announceType = new int[]{1, 3};
         for (int i = 0; i < userIds.size(); i++) {
-            int pageNum = getRandom(1, 1000);
+            int pageNum = getRandom(1, 500);
             String signature = DigestUtils.sha256Hex(userIds.get(i) + appKey);
+            int curTagIndex = i%(tagsSize-1);
+            String opTags = operaTags.get(curTagIndex);
+            String exOpTags = operaTags.get(curTagIndex>=(tagsSize-1)?0:curTagIndex+1);
+            if (getRandom(0, 1)==0) {
+                exOpTags = "";
+            }
+            int auditStatusIdx = getRandom(0, auditStatus.length-1);
+
             stringBuilder.append(signature).append(",")
                     .append(20).append(",")
                     .append(userIds.get(i)).append(",")
-                    .append(pageNum).append("\n");
+                    .append(pageNum).append(",")
+                    .append(opTags).append(",")
+                    .append(exOpTags).append(",")
+                    .append(getRandom(0, 1)).append(",")
+                    .append(getRandom(0, 1)).append(",")
+                    .append(auditStatus[auditStatusIdx]).append(",")
+                    .append(announceType[getRandom(0, 1)]).append(",")
+                    .append(getRandom(0, 1)).append("\n");
         }
-        writeFile("/Users/zhengshan/Downloads/search_page.csv", stringBuilder.toString());
+        writeFile("/Users/zhengshan/Downloads/search_page_multi_params.csv", stringBuilder.toString());
+    }
+
+    public static List<String> getOperateTags() throws Exception {
+        File filename = new File("/Users/zhengshan/Downloads/operatags.txt"); // 要读取以上路径的input。txt文件
+
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(filename)); // 建立一个输入流对象reader
+        BufferedReader br = new BufferedReader(reader); // 建立一个对象，它把文件内容转成计算机能读懂的语言
+
+        List<String> tags = new ArrayList<>();
+        String line = "";
+        line = br.readLine();
+        tags.add(line.trim());
+        while (line != null) {
+            line = br.readLine(); // 一次读入一行数据
+            if (line != null && !line.trim().isEmpty()) {
+                tags.add(line.trim());
+            }
+        }
+        return tags;
     }
 
     /**
