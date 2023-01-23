@@ -108,4 +108,9 @@ public class StockController extends BaseController {
     public String helloWord() {
         return "hello word";
     }
+
+    @GetMapping("search/es")
+    public String searchES() {
+        return "hello word";
+    }
 }

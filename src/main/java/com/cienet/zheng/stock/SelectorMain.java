@@ -1,16 +1,20 @@
 package com.cienet.zheng.stock;
 
 import com.cienet.zheng.stock.common.Utils;
+import com.cienet.zheng.stock.services.ProcessService;
 import com.google.common.util.concurrent.UncheckedTimeoutException;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @description:
@@ -19,7 +23,24 @@ import java.util.Set;
  **/
 public class SelectorMain {
     public static void main(String[] args) throws Exception {
-        Utils.buildMiHomeMiddlePageSearch();
+//        Utils.buildMiHomeMiddlePageSearch();
+//        System.out.println("hello world");
+//        ProcessService processService = new ProcessService();
+//        processService.getUserDetail();
+        long time = 1270051200000L;
+
+        Calendar cal = Calendar.getInstance();
+        int yearNow = cal.get(Calendar.YEAR); // 月
+        int monthNow = cal.get(Calendar.MONTH) + 1; // 月
+        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH); // 日
+        cal.setTime(new Date(time));
+        int yearRegister = cal.get(Calendar.YEAR);
+        int monthRegister = cal.get(Calendar.MONTH) + 1;
+        int dayOfMonthRegister = cal.get(Calendar.DAY_OF_MONTH);
+        int countYear = yearNow - yearRegister;
+        System.out.println(countYear);
+
+
     }
 
     ServerSocketChannel serverSocketChannel = null;
