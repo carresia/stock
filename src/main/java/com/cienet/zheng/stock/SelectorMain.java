@@ -22,26 +22,26 @@ import java.util.*;
  * @create: 2021-12-22 14:02
  **/
 public class SelectorMain {
-    public static void main(String[] args) throws Exception {
-//        Utils.buildMiHomeMiddlePageSearch();
-//        System.out.println("hello world");
-//        ProcessService processService = new ProcessService();
-//        processService.getUserDetail();
-        long time = 1270051200000L;
-
-        Calendar cal = Calendar.getInstance();
-        int yearNow = cal.get(Calendar.YEAR); // 月
-        int monthNow = cal.get(Calendar.MONTH) + 1; // 月
-        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH); // 日
-        cal.setTime(new Date(time));
-        int yearRegister = cal.get(Calendar.YEAR);
-        int monthRegister = cal.get(Calendar.MONTH) + 1;
-        int dayOfMonthRegister = cal.get(Calendar.DAY_OF_MONTH);
-        int countYear = yearNow - yearRegister;
-        System.out.println(countYear);
-
-
-    }
+//    public static void main(String[] args) throws Exception {
+////        Utils.buildMiHomeMiddlePageSearch();
+////        System.out.println("hello world");
+////        ProcessService processService = new ProcessService();
+////        processService.getUserDetail();
+//        long time = 1270051200000L;
+//
+//        Calendar cal = Calendar.getInstance();
+//        int yearNow = cal.get(Calendar.YEAR); // 月
+//        int monthNow = cal.get(Calendar.MONTH) + 1; // 月
+//        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH); // 日
+//        cal.setTime(new Date(time));
+//        int yearRegister = cal.get(Calendar.YEAR);
+//        int monthRegister = cal.get(Calendar.MONTH) + 1;
+//        int dayOfMonthRegister = cal.get(Calendar.DAY_OF_MONTH);
+//        int countYear = yearNow - yearRegister;
+//        System.out.println(countYear);
+//
+//
+//    }
 
     ServerSocketChannel serverSocketChannel = null;
     Selector selector = null;
