@@ -102,7 +102,7 @@ public class Test {
 //        System.out.println(sortedNewMap);
 //    }
 
-    public static void main(String[] args) throws Exception {
+    public static void main1(String[] args) throws Exception {
         String filePath = "/Users/zhengshan/Downloads/res.txt";
         File file = new File(filePath);
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
