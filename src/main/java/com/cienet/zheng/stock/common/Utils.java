@@ -23,7 +23,7 @@ public class Utils {
         List<String> userIds = getUserIds();
 
         StringBuilder stringBuilder = new StringBuilder();
-        String appKey = "e60221f56f7c4a4a848a05408fcbc5aa";
+        String appKey = "1";
         for (int i = 0; i < userIds.size(); i++) {
             String signature = DigestUtils.sha256Hex(userIds.get(i) + appKey);
             stringBuilder.append(userIds.get(i)).append(",")
@@ -49,7 +49,7 @@ public class Utils {
         .append("announceType").append(",")
         .append("isRmd").append("\n");
 
-        String appKey = "e60221f56f7c4a4a848a05408fcbc5aa";
+        String appKey = "1";
         int tagsSize = operaTags.size();
 
         int[] auditStatus = new int[]{0, 2, -1, -2, -7};
@@ -206,13 +206,13 @@ public class Utils {
                 userId.add(line.trim());
             }
         }
-        String senderIcon = "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1537323994.03296551.jpg";
+        String senderIcon = "https://pms_1537323994.03296551.jpg";
         int type = 1;
         String title = "标题title";
         String content = "一天天就知道哈哈哈哈哈";
 
-        String token = "098f6bcd4621d373cade4e832627b4f6";
-        String secret = "d9e987e7c1bd6e3c5091270937f50cdb";
+        String token = "1";
+        String secret = "1";
         Long ts = System.currentTimeMillis();
         String signature = DigestUtils.sha256Hex(ts + secret);
 
