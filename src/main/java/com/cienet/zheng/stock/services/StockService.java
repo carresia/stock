@@ -1,8 +1,8 @@
 package com.cienet.zheng.stock.services;
 
 
-import com.cienet.zheng.stock.dao.StockInfo;
-import com.cienet.zheng.stock.dao.UserOperate;
+import com.cienet.zheng.stock.dao.module.StockInfo;
+import com.cienet.zheng.stock.dao.module.UserOperate;
 import com.cienet.zheng.stock.exceptions.ServiceException;
 import com.cienet.zheng.stock.models.StockModel;
 import org.springframework.dao.DataAccessException;

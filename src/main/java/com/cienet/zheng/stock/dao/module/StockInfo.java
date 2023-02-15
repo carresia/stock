@@ -1,4 +1,4 @@
-package com.cienet.zheng.stock.dao;
+package com.cienet.zheng.stock.dao.module;
 
 
 import lombok.*;

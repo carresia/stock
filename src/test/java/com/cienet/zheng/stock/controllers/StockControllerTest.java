@@ -21,9 +21,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.cienet.zheng.stock.dao.DBOperate;
-import com.cienet.zheng.stock.dao.StockInfo;
-import com.cienet.zheng.stock.dao.UserOperate;
+import com.cienet.zheng.stock.dao.module.DBOperate;
+import com.cienet.zheng.stock.dao.module.StockInfo;
+import com.cienet.zheng.stock.dao.module.UserOperate;
 import com.cienet.zheng.stock.models.StockModel;
 import com.cienet.zheng.stock.services.StockService;
 

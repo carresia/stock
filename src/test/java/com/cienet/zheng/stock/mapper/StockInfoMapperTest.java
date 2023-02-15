@@ -1,9 +1,8 @@
 package com.cienet.zheng.stock.mapper;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
+import com.cienet.zheng.stock.dao.StockInfoMapper;
 import com.google.common.base.Predicate;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -13,15 +12,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cienet.zheng.stock.common.StockSelectorExample;
-import com.cienet.zheng.stock.dao.DBOperate;
-import com.cienet.zheng.stock.dao.StockInfo;
-import com.cienet.zheng.stock.dao.UserOperate;
+import com.cienet.zheng.stock.dao.module.DBOperate;
+import com.cienet.zheng.stock.dao.module.StockInfo;
+import com.cienet.zheng.stock.dao.module.UserOperate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

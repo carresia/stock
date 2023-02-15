@@ -1,8 +1,8 @@
 package com.cienet.zheng.stock.controllers;
 
 import com.cienet.zheng.stock.biz.StockBiz;
-import com.cienet.zheng.stock.dao.StockInfo;
-import com.cienet.zheng.stock.dao.UserOperate;
+import com.cienet.zheng.stock.dao.module.StockInfo;
+import com.cienet.zheng.stock.dao.module.UserOperate;
 import com.cienet.zheng.stock.models.StockModel;
 import com.cienet.zheng.stock.services.StockService;
 import io.swagger.annotations.Api;

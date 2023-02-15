@@ -2,11 +2,11 @@ package com.cienet.zheng.stock.services;
 
 import com.cienet.zheng.stock.common.ErrCode;
 import com.cienet.zheng.stock.common.StockSelectorExample;
-import com.cienet.zheng.stock.dao.DBOperate;
-import com.cienet.zheng.stock.dao.StockInfo;
-import com.cienet.zheng.stock.dao.UserOperate;
+import com.cienet.zheng.stock.dao.module.DBOperate;
+import com.cienet.zheng.stock.dao.module.StockInfo;
+import com.cienet.zheng.stock.dao.module.UserOperate;
 import com.cienet.zheng.stock.exceptions.ServiceException;
-import com.cienet.zheng.stock.mapper.StockInfoMapper;
+import com.cienet.zheng.stock.dao.StockInfoMapper;
 import com.cienet.zheng.stock.models.StockModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
-package com.cienet.zheng.stock.mapper;
+package com.cienet.zheng.stock.dao;
 
 import com.cienet.zheng.stock.common.StockSelectorExample;
-import com.cienet.zheng.stock.dao.StockInfo;
-import com.cienet.zheng.stock.dao.DBOperate;
+import com.cienet.zheng.stock.dao.module.StockInfo;
+import com.cienet.zheng.stock.dao.module.DBOperate;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
