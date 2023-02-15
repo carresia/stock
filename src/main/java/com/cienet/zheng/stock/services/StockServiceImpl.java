@@ -1,5 +1,6 @@
 package com.cienet.zheng.stock.services;
 
+import com.cienet.zheng.stock.biz.StockBiz;
 import com.cienet.zheng.stock.common.ErrCode;
 import com.cienet.zheng.stock.common.StockSelectorExample;
 import com.cienet.zheng.stock.dao.module.DBOperate;
@@ -176,4 +177,17 @@ public class StockServiceImpl implements StockService {
         return Optional.ofNullable(lastUpdateStockInfo)
                 .orElseThrow(() -> new ServiceException(ErrCode.PARAM_ERROR, "StockInfo tradeId: " + tradeId + " is not exist."));
     }
+
+    @Autowired
+    private StockBiz stockBiz;
+//    @Transactional(rollbackFor = Throwable.class)
+    public void testTransaction() {
+        stockBiz.insert2Food();
+        stockBiz.insert2User();
+//        stockBiz.insert2FoodNew();
+//        stockBiz.insert2UserNew();
+        log.info("complete");
+    }
+
+
 }

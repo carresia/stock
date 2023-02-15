@@ -5,6 +5,7 @@ import com.cienet.zheng.stock.dao.module.StockInfo;
 import com.cienet.zheng.stock.dao.module.UserOperate;
 import com.cienet.zheng.stock.models.StockModel;
 import com.cienet.zheng.stock.services.StockService;
+import com.cienet.zheng.stock.services.StockServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,8 +27,7 @@ public class StockController extends BaseController {
 
     @Autowired
     StockService stockService;
-    @Autowired
-    private StockBiz stockBiz;
+
 
     // first start a trade
     @ApiOperation("Open a trade, Buy or Sell.")
@@ -117,9 +117,12 @@ public class StockController extends BaseController {
         return "hello word";
     }
 
+
+    @Autowired
+    private StockServiceImpl stockServiceImpl;
     @GetMapping("test/transaction")
     public String testTransaction() {
-        stockBiz.testTransaction();
+        stockServiceImpl.testTransaction();
         return "test transaction";
     }
 }
