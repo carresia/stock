@@ -1,5 +1,6 @@
 package com.cienet.zheng.stock.controllers;
 
+import com.cienet.zheng.stock.biz.StockBiz;
 import com.cienet.zheng.stock.dao.StockInfo;
 import com.cienet.zheng.stock.dao.UserOperate;
 import com.cienet.zheng.stock.models.StockModel;
@@ -25,6 +26,8 @@ public class StockController extends BaseController {
 
     @Autowired
     StockService stockService;
+    @Autowired
+    private StockBiz stockBiz;
 
     // first start a trade
     @ApiOperation("Open a trade, Buy or Sell.")
@@ -112,5 +115,11 @@ public class StockController extends BaseController {
     @GetMapping("search/es")
     public String searchES() {
         return "hello word";
+    }
+
+    @GetMapping("test/transaction")
+    public String testTransaction() {
+        stockBiz.testTransaction();
+        return "test transaction";
     }
 }

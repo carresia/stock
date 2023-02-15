@@ -2,8 +2,6 @@ package com.cienet.zheng.stock;
 
 import com.cienet.zheng.stock.common.Utils;
 import com.cienet.zheng.stock.models.BaseReq;
-import com.cienet.zheng.stock.testpackage.GrowthScoreData;
-import com.cienet.zheng.stock.testpackage.GrowthScoreResultBody;
 //import com.github.benmanes.caffeine.cache.Caffeine;
 //import com.github.benmanes.caffeine.cache.LoadingCache;
 import com.google.gson.FieldNamingPolicy;
