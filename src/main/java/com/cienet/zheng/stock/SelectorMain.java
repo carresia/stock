@@ -1,5 +1,6 @@
 package com.cienet.zheng.stock;
 
+import com.cienet.zheng.stock.common.Md5Utils;
 import com.cienet.zheng.stock.common.Utils;
 import com.google.common.util.concurrent.UncheckedTimeoutException;
 
@@ -19,7 +20,8 @@ import java.util.Set;
  **/
 public class SelectorMain {
     public static void main(String[] args) throws Exception {
-        Utils.buildMiHomeMiddlePageSearch();
+//        Utils.buildMiHomeMiddlePageSearch();
+        System.out.println(Md5Utils.getMD5("865003062698087".getBytes()));
     }
 
     ServerSocketChannel serverSocketChannel = null;
