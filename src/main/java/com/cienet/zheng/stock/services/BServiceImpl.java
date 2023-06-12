@@ -1,12 +1,14 @@
 package com.cienet.zheng.stock.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author zhengshan
  * @description
  * @create 2023/6/12
  */
+@Service
 public class BServiceImpl implements BService {
     @Autowired
     private AService aService;
